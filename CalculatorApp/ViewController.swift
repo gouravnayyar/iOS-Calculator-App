@@ -88,18 +88,35 @@ class ViewController: UIViewController {
             /* = / + - */
             // operation (tag)
             if operation == 11 {
-                resultLabel.text = String(previousNumber / numberOnScreen)
+                resultLabel.text = self.getResult(for: previousNumber / numberOnScreen)
 
             } else if operation == 12 {
-                resultLabel.text = String(previousNumber * numberOnScreen)
-
+                resultLabel.text = self.getResult(for: previousNumber * numberOnScreen)
             } else if operation == 13 {
-                resultLabel.text = String(previousNumber - numberOnScreen)
+                resultLabel.text = self.getResult(for: previousNumber - numberOnScreen)
 
             } else if operation == 14 {
-                resultLabel.text = String(previousNumber + numberOnScreen)
+                resultLabel.text = self.getResult(for: previousNumber + numberOnScreen)
             }
         }
     }
+
+
+    /// Format the result into either Integer value or Double value
+    ///
+    /// eg 4/2 = 2
+    ///    5/2 = 2.5
+    func getResult(for value: Double) -> String {
+
+        let isInteger = floor(value) == value
+
+        if isInteger {
+            return String(Int(value))
+        }
+
+
+        return String(format: "%.1f", value)
+    }
+
 }
 
